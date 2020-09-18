@@ -15,7 +15,7 @@ app.use(express.json());
 // handle form data correctly
 app.use(express.urlencoded({ extended: true }));
 
-app.use('client', express.static('client'));
+app.use(express.static('client'));
 //app.get('/', (req, res) =>
 //   res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'))
 // );
