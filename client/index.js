@@ -1,13 +1,39 @@
+const maindiv = document.createElement('div');
+//const h1 = document.createElement('h1');
+maindiv.innerHTML = '<h1 id="header">Charlie</h1>';
+//maindiv.append(h1);
+maindiv.className = 'green';
 const body = document.querySelector('body');
-const div = document.createElement('div');
-// h3.appendChild(document.createElement(<span></span>));
-div.innerHTML = 'Any type of string that we want';
-body.appendChild(div);
-const ol = document.createElement('ol');
-const li = document.createElement('li');
-li.innerText = 'no I am the line item';
-ol.appendChild(li);
+body.appendChild(maindiv);
 
-// li.innerHTML = 'this is line item';
-// div.appendChild(li);
-div.appendChild(ol);
+const items = ['lilly', 'emmett', 'tabithachonkface'];
+const list = document.createElement('ul');
+for (let el of items) {
+  const item = document.createElement('li');
+  item.innerText = el;
+  list.appendChild(item);
+}
+body.appendChild(list);
+
+const get = document.createElement('button');
+get.innerText = 'GET TODO LIST';
+get.type = 'button';
+get.addEventListener('click', () => {
+  fetch(`/api`)
+    .then((resp) => resp.json())
+    .then((data) => {
+      //const totalList = document.createElement('div');
+      for (let el of data.rows) {
+        const div = document.createElement('div');
+        for (let key in el) {
+          const innerP = document.createElement('p');
+          innerP.innerText = el[key];
+          div.appendChild(innerP);
+        }
+        body.appendChild(div);
+      }
+      // body.appendChild(totalList);
+    })
+    .catch((err) => console.log(err));
+});
+body.appendChild(get);
