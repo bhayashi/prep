@@ -17,6 +17,7 @@ controller.getData = (req, res, next) => {
 
 controller.postData = (req, res, next) => {
   // we want information like item, info, date, and status from req.body, set those datapoints to variables.
+  console.log(`req.body: ${req.body}`);
   const { item, description, date, status } = req.body;
   const values = [item, description, date, status];
   //query the databse, passing in the items that we received
