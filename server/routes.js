@@ -1,12 +1,10 @@
 const express = require('express');
+const controller = require('./controller');
 
-const Router = express.Router();
-const controller = require('./controllers');
+const router = express.Router();
 
-Router.get('/',
-  controller.getData,
-  (req, res) => {
-    res.status(200).cookie('chocolate', 3).json(res.locals.info);
-  });
+router.get('/', controller.getData, (req, res) => {
+  res.status(200).json(res.locals.info);
+});
 
-module.exports = Router;
+module.exports = router;
