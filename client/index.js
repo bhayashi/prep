@@ -1,5 +1,3 @@
-const { get } = require("../server/routes");
-
 const body = document.querySelector('body');
 const form = document.createElement('div');
 form.innerHTML = `
@@ -24,8 +22,11 @@ getButton.innerText = 'GET TODO LIST';
 getButton.type = 'button';
 getButton.addEventListener('click', () => {
   fetch('/api')
-    .then((res))
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err));
 });
+body.appendChild(getButton);
 
 document.getElementById('post-button').onclick = () => {
   fetch('/api', {
@@ -36,7 +37,18 @@ document.getElementById('post-button').onclick = () => {
     }),
   })
     .then((res) => res.json())
-    .then((data) => console.log('Post from index.js', data))
+    .then((data) => {
+      for (const obj of data) {
+        const posts = document.createElement('div');
+        for (const key in obj) {
+          const innerP = document.createElement('p');
+          innerP.innerText = obj[key];
+          posts.appendChild(innerP);
+        };
+        body.appendChild(posts);
+      };
+      console.log('Post from index.js', data);
+    })
     .catch((err) => console.log('Error in Post from index.js', err));
 };
 
