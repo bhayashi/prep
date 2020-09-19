@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
 // const inputForm = document.getElementById('input-form');
 //
 // ;
@@ -55,14 +57,14 @@ get.addEventListener('click', () => {
 todoList.appendChild(get);
 
 function getAllItems() {
-  fetch(`/api`)
+  fetch('/api')
     .then((resp) => resp.json())
     .then((data) => {
-      //const totalList = document.createElement('div');
+      // const totalList = document.createElement('div');
       todoList.innerHTML = '';
-      for (let el of data.rows) {
+      for (const el of data.rows) {
         const div = document.createElement('div');
-        for (let key in el) {
+        for (const key in el) {
           const innerP = document.createElement('p');
           innerP.innerText = el[key];
           div.appendChild(innerP);
