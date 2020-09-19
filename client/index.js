@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-const body = document.querySelector('body');
-const h3 = document.createElement('h3');
-h3.innerText = 'Any type of string that we want';
-body.appendChild(h3);
-const ol = document.createElement('ol');
-const li = document.createElement('li');
-ol.innerHTML = '<li>this is the first item</li>';
-li.innerHTML = 'this is a line item';
-h3.appendChild(li);
-h3.appendChild(ol);
-=======
 const maindiv = document.createElement('div');
 //const h1 = document.createElement('h1');
 maindiv.innerHTML = '<h1 id="header">Charlie</h1>';
@@ -49,4 +37,3 @@ get.addEventListener('click', () => {
     .catch((err) => console.log(err));
 });
 body.appendChild(get);
->>>>>>> 87208a12a795403631c950eb600c8e0f8e35bdfa
